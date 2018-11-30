@@ -20,12 +20,12 @@ int angBraco = 0;
 int angBaseMax = 0;
 int angPulsoMax = 85;
 int angGarraMax = 100;
-int angBracoMax = 0;
+int angBracoMax = 360;
 
 int angBaseMin = 0;
-int angPulsoMin = 0;
+int angPulsoMin = 15;
 int angGarraMin = 15;
-int angBracoMin = 0;
+int angBracoMin = 40;
 
 int valSoma = 1;
 int velocidade = 15;
@@ -34,10 +34,10 @@ void initServ(){
     sBase.attach(pSBase);  
     sPulso.attach(pSPulso);
     sGarra.attach(pSGarra);
+    sBraco.attach(pSBraco);
 }
 
 void moverServos(String input){
-
     
 
     if(velocidade <= 5){
@@ -48,16 +48,25 @@ void moverServos(String input){
         angBase = angBase + valSoma;
     }else if(input == "LL" || input == "left0"){
         angBase = angBase - valSoma;
-    }else if(input == "FF"){      
+    }else if(input == "FF"){
+        angBraco = angBraco + valSoma;     
         angPulso = angPulso + valSoma;
         if(angPulso >= angPulsoMax){
             angPulso = angPulsoMax;
         }
+        if(angBraco >= angBracoMax){
+            angBraco = angBracoMax;
+        }
+        Serial.println(angBraco);
     }else if(input == "BB" || input == "down0"){
             angPulso = angPulso - valSoma;
+            angBraco = angBraco - valSoma;     
             if(angPulso <= angPulsoMin){
                 angPulso = angPulsoMin;
-        }
+            }
+            if(angBraco <= angBracoMin){
+                angBraco = angBracoMin;
+            }
     }else if(input == "W" || input == "qua0"){
 
             angGarra = angGarraMax;
@@ -76,19 +85,19 @@ void moverServos(String input){
         valSoma = 2;
     }else if(input == "3" || input == "33"){
         valSoma = 3;
-        velocidade = 10;
+        // velocidade = 10;
     }else if(input == "4" || input == "44"){
         valSoma = 4;
     }else if(input == "5" || input == "55"){
         valSoma = 5;
-        velocidade = 7;
+        // velocidade = 7;
     }else if(input == "6" || input == "66"){
         valSoma = 7;
     }else if(input == "7" || input == "77"){
         valSoma = 10;
     }else if(input == "8" || input == "88"){
         valSoma = 15;
-        velocidade = 5;
+        // velocidade = 5;
     }else if(input == "9" || input == "99"){
 
     }
@@ -104,6 +113,7 @@ void moverServos(String input){
     sBase.write(angBase);
     sPulso.write(angPulso);
     sGarra.write(angGarra);
+    sBraco.write(angBraco);
 
 delay(velocidade);
     

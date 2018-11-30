@@ -1,0 +1,6 @@
+{
+    "terminal.integrated.env.osx": {
+        "PATH": "/Users/mariana.ramos/.platformio/penv/bin:/Users/mariana.ramos/.platformio/penv:/Users/mariana.ramos/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:phonegap/android-sdk-macosx/platforms:phonegap/android-sdk-macosx/tools:phonegap/apache-ant/bin",
+        "PLATFORMIO_CALLER": "vscode"
+    }
+}
